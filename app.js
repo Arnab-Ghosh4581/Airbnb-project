@@ -1,13 +1,13 @@
 // Core Module
 const path = require('path');
-
+require('dotenv').config();
 // External Module
 const express = require('express');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const { default: mongoose } = require('mongoose');
 const multer = require('multer');
-const DB_PATH = "mongodb+srv://arnab4581:root@cluster0.fmo7t5h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const DB_PATH = process.env.DB_PATH;
 
 //Local Module
 const storeRouter = require("./routes/storeRouter")
@@ -23,8 +23,12 @@ app.set('views', 'views');
 
 const store = new MongoDBStore({
   uri: DB_PATH,
-  collection: 'sessions'
-});
+  collection: 'sessions',
+   useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+// .then(()=> console.log('DB connected'))
+// .then((error)=> console.log("DB not connected"));
 
 const randomString = (length) => {
   const characters = 'abcdefghijklmnopqrstuvwxyz';
@@ -56,7 +60,7 @@ const multerOptions = {
   storage, fileFilter
 };
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(multer(multerOptions).single('photo'));
 app.use(express.static(path.join(rootDir, 'public')))
 app.use("/uploads", express.static(path.join(rootDir, 'uploads')))
@@ -88,7 +92,7 @@ app.use("/host", hostRouter);
 
 app.use(errorsController.pageNotFound);
 
-const PORT = 3003;
+const PORT = process.env.PORT || 3000;
 
 mongoose.connect(DB_PATH).then(() => {
   console.log('Connected to Mongo');
