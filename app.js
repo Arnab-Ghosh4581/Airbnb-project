@@ -101,4 +101,4 @@ mongoose.connect(DB_PATH).then(() => {
   });
 }).catch(err => {
   console.log('Error while connecting to Mongo: ', err);
-});
+}); 
