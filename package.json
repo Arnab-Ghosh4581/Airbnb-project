@@ -2,11 +2,12 @@
   "name": "chapter-10---airbnb",
   "version": "1.0.0",
   "main": "index.js",
+  
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "tailwind": "tailwindcss -i ./views/input.css -o ./public/output.css --watch",
-    "start": "nodemon app.js & npm run tailwind",
-    "build": "npm run build"
+    "dev": "nodemon app.js & npm run tailwind:dev",
+    "tailwind:dev": "tailwindcss -i ./views/input.css -o ./public/output.css --watch",
+    "build:css": "tailwindcss -i ./views/input.css -o ./public/output.css --minify",
+    "start": "npm run build:css && node app.js"
   },
   "keywords": [],
   "author": "",
