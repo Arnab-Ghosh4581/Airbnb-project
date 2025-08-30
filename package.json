@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "tailwind": "tailwindcss -i ./views/input.css -o ./public/output.css --watch",
-    "start": "concurrently \"nodemon app.js\"  \"npm run tailwind\"",
-    "build": "npm run build"
+  "start": "node app.js",
+  "dev": "concurrently \"nodemon app.js\" \"npm run tailwind\"",
+  "tailwind": "tailwindcss -i ./views/input.css -o ./public/output.css --watch",
+  "build:css": "tailwindcss -i ./views/input.css -o ./public/output.css"
   },
   "keywords": [],
   "author": "",
