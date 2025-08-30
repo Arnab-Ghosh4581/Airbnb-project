@@ -8,6 +8,9 @@
   "tailwind": "tailwindcss -i ./views/input.css -o ./public/output.css --watch",
   "build:css": "tailwindcss -i ./views/input.css -o ./public/output.css"
   },
+  "engines": {
+  "node": "20.x"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
