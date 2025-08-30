@@ -4,7 +4,8 @@ require('dotenv').config();
 // External Module
 const express = require('express');
 const session = require('express-session');
-const MongoDBStore = require('connect-mongodb-session')(session);
+// const MongoDBStore = require('connect-mongodb-session')(session);
+const MongoStore = require('connect-mongo');
 const { default: mongoose } = require('mongoose');
 const multer = require('multer');
 const DB_PATH = process.env.DB_PATH;
@@ -21,14 +22,26 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-const store = new MongoDBStore({
-  uri: DB_PATH,
-  collection: 'sessions',
-  //  useNewUrlParser: true,
-  // useUnifiedTopology: true
-})
+// const store = new MongoDBStore({
+//   uri: DB_PATH,
+//   collection: 'sessions',
+//   //  useNewUrlParser: true,
+//   // useUnifiedTopology: true
+// })
 // .then(()=> console.log('DB connected'))
 // .then((error)=> console.log("DB not connected")); 
+const store = MongoStore.create({
+  mongoUrl: DB_PATH,
+  collectionName: 'sessions',
+  ttl: 14 * 24 * 60 * 60 // 14 days
+});
+
+app.use(session({
+  secret: "KnowledgeGate AI with Complete Coding",
+  resave: false,
+  saveUninitialized: true,
+  store
+}));
 
 const randomString = (length) => {
   const characters = 'abcdefghijklmnopqrstuvwxyz';
