@@ -3,13 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "concurrently \"nodemon app.js\" \"npm run tailwind\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "tailwind": "tailwindcss -i ./views/input.css -o ./public/output.css --watch",
-    "build:css": "tailwindcss -i ./views/input.css -o ./public/output.css"
-  },
-  "engines": {
-    "node": "20.x"
+    "start": "nodemon app.js & npm run tailwind",
+    "build": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +21,6 @@
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "body-parser": "^1.20.3",
-    "connect-mongo": "^5.1.0",
     "connect-mongodb-session": "^5.0.0",
     "dotenv": "^17.2.1",
     "ejs": "^3.1.10",
