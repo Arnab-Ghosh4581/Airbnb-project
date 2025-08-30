@@ -28,7 +28,7 @@ const store = new MongoDBStore({
   // useUnifiedTopology: true
 })
 // .then(()=> console.log('DB connected'))
-// .then((error)=> console.log("DB not connected"));
+// .then((error)=> console.log("DB not connected")); 
 
 const randomString = (length) => {
   const characters = 'abcdefghijklmnopqrstuvwxyz';
