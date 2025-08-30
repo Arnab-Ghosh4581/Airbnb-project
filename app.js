@@ -24,8 +24,8 @@ app.set('views', 'views');
 const store = new MongoDBStore({
   uri: DB_PATH,
   collection: 'sessions',
-   useNewUrlParser: true,
-  useUnifiedTopology: true
+  //  useNewUrlParser: true,
+  // useUnifiedTopology: true
 })
 // .then(()=> console.log('DB connected'))
 // .then((error)=> console.log("DB not connected"));
